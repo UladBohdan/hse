@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage[none]{hyphenat}
+
+\usepackage{listings}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+{\Large
+
+Uladzislau Bohdan
+
+MS program ``Data Science''
+
+Ordered Sets in Data Analysis
+
+\vspace{5mm}
+
+Home assignment \#1
+
+}
+
+\vspace{8mm}
+
+\textbf{Task 1}
+
+By defition, $f: U \rightarrow U$ is a surjective function if
+$\forall b \in U$, $\exists a \in U$ and $b = f(a)$.
+
+Let's assume the statement is wrong and $f$ is not necessarily injective. That means
+$\exists a_1, a_2 \in U$, $a_1 \neq a_2$, such that $f(a_1) = f(a_2) = b_0$.
+
+Then, because $f$ is surjective, $\forall b \in U/\{b_0\}$, $\exists a \in U/\{a_1, a_2\}$ such that $b = f(a)$.
+
+Because cardinality of a set $U/\{a_1, a_2\}$ is less than such of a set $U/\{b_0\}$,
+then by definition of a function and by pigeonhole principle we have a contradiction.
+
+Therefore, if function $f: U \rightarrow U$ is surjective, than it is also injective.
+
+\vspace{8mm}
+
+\textbf{Task 2}
+
+In this task I'll be talking about binary relations $R$ as about matrices $5 \times 5$,
+where element $(i, j) = 1$ if $a_i R a_j$, otherwise $(i, j) = 0$. Here $(i, j)$ is an element of the matrix.
+
+\textbf{a) Asymmetric and transitive}
+
+The relations are asymmetric if $(i, j) \neq (j, i)$.
+
+The relations are transitive if $(i, j) = 1$ and $(j, k) = 1 \Rightarrow (i, k) = 1$.
+
+Given such definitions, it follows that:
+\begin{itemize}
+  \item We should only analyze a triangle matrix with no diagonal included.
+  Without loss of generality, we work with upper right triangular matrix.
+  Lower left triangular matrix is then uniquely defined due to asymmetric relations.
+  \item Diagonal is generated independently from the rest of the matrix and diagonal with any values is valid.
+  \item Not all triangular matrices are valid due to transitive relations.
+\end{itemize}
+
+The code below calculates the number of valid triangular matrices:
+
+\lstinputlisting[language=Python]{2a.py}
+
+The output is $357$.
+
+Each valid triangular matrix can coexist with any valid diagonal.
+Total number of valid diagonals is $2^5 = 32$.
+
+This gives us a total number of relations of $357 * 32 = 11424$.
+
+\textbf{b) Antisymmetric and antireflexive}
+
+The relations are antisymmetric if $(i, j) = 1$ and $(j, i) = 1 \Rightarrow i = j$.
+
+The relations are antireflexive if $(i, i) = 0$.
+
+It follows that:
+\begin{itemize}
+  \item Diagonal elements are all zeros.
+  \item Elements upper (WLG) then a diagonal (any) may be any values;
+  for elements lower then the diagonal, if $(i, j) = 1$, then $(j, i) = 0$,
+  if $(i, j) = 0$, then $(j, i)$ is either $0$ or $1$.
+\end{itemize}
+
+The following code does the calculations:
+
+\lstinputlisting[language=Python]{2b.py}
+
+The output is $59049$ - a total number of matrices which satisfy the conditions.
+
+\end{document}
