@@ -24,3 +24,9 @@ The algorithm then is as following:
 where each `A_i` is a disjunction of all literals with negations
 put in a way that `A_i` is only equal to `1` when `A=0` and `B=0`.
 Same for `B_i` but with `A=1` and `B=1`.
+
+## Running the code
+```
+bash setup.sh
+bash run.sh
+```
