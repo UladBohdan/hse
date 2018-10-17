@@ -6,4 +6,6 @@
 
 #### Faculty of Computer Science
 
+#### MS program "Data Science"
+
 #### September 2018 - present
